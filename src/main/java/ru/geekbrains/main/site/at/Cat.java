@@ -41,5 +41,4 @@ public class Cat implements Players{
     public void jump() {
         System.out.println(name + " прыгает максимум: " + jump + "м");
     }
-
 }
