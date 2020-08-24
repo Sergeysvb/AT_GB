@@ -40,3 +40,4 @@ public class Robot implements Players{
         System.out.println(name + " прыгает максимум: " + jump + "м");
     }
 }
+

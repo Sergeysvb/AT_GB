@@ -40,3 +40,4 @@ public class Person implements Players{
         System.out.println(name + " прыгает максимум: " + jump + "м");
     }
 }
+

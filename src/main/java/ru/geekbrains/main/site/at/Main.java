@@ -26,6 +26,7 @@ public class Main {
                 if (play.getSuccess()) {
                     System.out.println("*************");
                     obstacles[i].check(play);
+
                 }
 
             }
