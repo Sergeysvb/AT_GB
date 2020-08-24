@@ -38,6 +38,7 @@ import static org.hamcrest.Matchers.equalTo;
  */
 
 public class SearchWebTest extends BaseWebSettingsTest {
+
     @Test
     public void search() {
         WebElement buttonSearch = driver.findElement(By.cssSelector("a>[class=\"svg-icon icon-search \"]"));

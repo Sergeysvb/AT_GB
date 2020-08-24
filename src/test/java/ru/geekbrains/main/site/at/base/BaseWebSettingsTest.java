@@ -36,7 +36,6 @@ public abstract class BaseWebSettingsTest {
         wait30second = new WebDriverWait(driver, 30);
 
     }
-
     @AfterEach
     public void afterAllTest() {
         driver.quit();

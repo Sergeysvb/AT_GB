@@ -57,6 +57,5 @@ public class NavigationWebTest extends BaseWebSettingsTest {
 //        href="/career"
         contentPage.getNavigationBlock().clickButton("Карьера");
         contentPage.checkPageName("Карьера");
-
     }
 }
