@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.block;
 
+import io.qameta.allure.Step;
 import org.hamcrest.Matcher;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -43,6 +44,7 @@ public class SearchTabsBlock extends BasePage {
         getTab(tabName).click();
     }
 
+    @Step("Проверка на соответствие при поиске контента{tabName}")
     public SearchTabsBlock checkCount(String tabName, Matcher<Integer> matcher) {
         String actualCount = getTab(tabName).findElement(By.cssSelector("span")).getText();
         assertThat(Integer.parseInt(actualCount), matcher);

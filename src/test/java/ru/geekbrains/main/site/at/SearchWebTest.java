@@ -1,5 +1,7 @@
 package ru.geekbrains.main.site.at;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,6 +33,8 @@ public class SearchWebTest extends BaseWebSettingsTest {
     }
 
 
+    @Feature("Поиск")
+    @Story("Проверка исправной работы поиска")
     @DisplayName("Проверка количества контента")
     @Test
     void searchTest() {

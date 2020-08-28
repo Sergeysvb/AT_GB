@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.page;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,11 +30,13 @@ public class ContentPage extends BasePage {
         this.sampleBlock = new SampleBlock(driver);
     }
 
+    @Step("Проверка что имя страницы равно:{expectedNamePage}")
     public ContentPage checkPageName(String expectedNamePage) {
         headerBlock.checkNamePage(expectedNamePage);
         return this;
     }
 
+    @Step("Закрытие всплывающий окон с предложениями")
     public ContentPage closePopUp(){
         popUp1.click();
         popUp2.click();

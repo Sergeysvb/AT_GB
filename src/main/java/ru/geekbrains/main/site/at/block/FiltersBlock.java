@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.block;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -69,6 +70,8 @@ public class FiltersBlock extends BasePage {
 //    Системное администрирование   filtersSystemAdministration
 //    GeekClub                      filtersGeekClub
 //    Киберспорт                    filtersSport
+
+    @Step("Применение фильра:{nameButton}")
     public ContentPage clickButton(String nameButton) {
         switch (nameButton) {
             case "Бесплатные": {

@@ -1,6 +1,7 @@
 package ru.geekbrains.main.site.at;
 
-import com.sun.org.glassfish.gmbal.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,15 +10,6 @@ import ru.geekbrains.main.site.at.base.BaseWebSettingsTest;
 import ru.geekbrains.main.site.at.page.ContentPage;
 
 import java.util.stream.Stream;
-
-//        Перейти на сайт https://geekbrains.ru/career
-//        Нажать на кнопку Форум
-//        Проверить что страница Форум открылась
-//        Повторить для
-//        Вебинары
-//        Блог
-//        Тесты
-//        Карьера
 
 @DisplayName("Навигация")
 public class NavigationWebTest extends BaseWebSettingsTest {
@@ -35,8 +27,8 @@ public class NavigationWebTest extends BaseWebSettingsTest {
 //    Реализовать проверку отображения блоков Header и Footer на каждой странице сайта (как минимум самого блока)
 
 
-    @Description("Тесты которые проверяют функционал без Pop-UP")
-    @DisplayName("Нажатие на элемент навагации")
+    @Feature("Проверка навигации")
+    @Story("Успешный переход на соответствующий контент")
     @ParameterizedTest(name = "{index} => Нажатие на: {0}")
     @MethodSource("stringProviderNotPopUp")
     public void checkNavigationNotPopUp(String button) {
@@ -56,6 +48,7 @@ public class NavigationWebTest extends BaseWebSettingsTest {
         );
     }
 
+    @DisplayName("Проверка страницы Блог с PopUp")
     @Test
     public void checkNavigationPopUp() {
         driver.get("https://geekbrains.ru/career");

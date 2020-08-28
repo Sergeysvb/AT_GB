@@ -1,5 +1,7 @@
 package ru.geekbrains.main.site.at;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.geekbrains.main.site.at.base.BaseWebSettingsTest;
@@ -19,7 +21,11 @@ import ru.geekbrains.main.site.at.page.AuthorizationPage;
 //        9. Выбрать в фильтрах чекбокс "Тестирование"
 //        10. Проверить что в выборке отображается курсы "Тестирование ПО. Уровень 1"
 //        11. Проверить что в выборке отображается курсы "Тестирование ПО. Уровень 2"
-@DisplayName("Дополнительное задание")
+
+
+@Feature("Проверка фильтров")
+@Story("Успешная сортировка по фильтрам")
+@DisplayName("Проверка функционала")
 public class SearchWebTest2 extends BaseWebSettingsTest {
 
     @Test
