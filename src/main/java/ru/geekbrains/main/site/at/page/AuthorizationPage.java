@@ -4,9 +4,9 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ru.geekbrains.main.site.at.BasePage;
+import ru.geekbrains.main.site.at.utils.BasePage;
 
-public class AuthorizationPage extends BasePage {
+public class AuthorizationPage extends BasePage implements IOpenURL{
 
     @FindBy(css = "#user_email")
     private WebElement inputLogin;
@@ -21,7 +21,7 @@ public class AuthorizationPage extends BasePage {
         super(driver);
     }
 
-    @Step("Авторизация с логин{login} и пароль{password}")
+    @Step("Авторизация с логин:{login} и пароль:{password}")
     public ContentPage singIn(String login, String password) {
         inputLogin.sendKeys(login);
         inputPassword.sendKeys(password);
@@ -39,5 +39,12 @@ public class AuthorizationPage extends BasePage {
 
     public WebElement getButtonSingIn() {
         return buttonSingIn;
+    }
+
+    @Step("Открытие страницы")
+    @Override
+    public AuthorizationPage openURL() {
+        openPageInBrowser("https://geekbrains.ru/login");
+        return this;
     }
 }

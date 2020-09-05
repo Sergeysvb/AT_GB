@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import ru.geekbrains.main.site.at.BasePage;
+import ru.geekbrains.main.site.at.utils.BasePage;
 import ru.geekbrains.main.site.at.page.ContentPage;
 
 public class SampleBlock extends BasePage {
@@ -23,5 +23,4 @@ public class SampleBlock extends BasePage {
 
 
     }
-
 }

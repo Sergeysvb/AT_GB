@@ -11,51 +11,40 @@ import ru.geekbrains.main.site.at.page.ContentPage;
 
 import java.util.stream.Stream;
 
+import static ru.geekbrains.main.site.at.block.NavigationBlock.NameButton;
+
+@Feature("Проверка навигации")
+@Story("Успешный переход на соответствующий контент")
 @DisplayName("Навигация")
 public class NavigationWebTest extends BaseWebSettingsTest {
 
-//    Перейти на сайт https://geekbrains.ru/events
-//    Нажать на кнопку Курсы
-//    Проверить что страница Курсы открылась
-//    Повторить для
-//    Курсы
-//    Вебинары
-//    Форум
-//    Блог
-//    Тесты
-//    Карьера
-//    Реализовать проверку отображения блоков Header и Footer на каждой странице сайта (как минимум самого блока)
+@DisplayName("Проверка навигации")
+@ParameterizedTest(name = "{index} => Нажатие на: {0}")
+@MethodSource("stringProviderNotPopUp")
+public void checkNavigationNotPopUp(NameButton nameButton) {
+    new ContentPage(driver)
+            .openURL()
+            .getNavigationBlock().clickButton(nameButton)
+            .checkPageName(nameButton);
+}
 
 
-    @Feature("Проверка навигации")
-    @Story("Успешный переход на соответствующий контент")
-    @ParameterizedTest(name = "{index} => Нажатие на: {0}")
-    @MethodSource("stringProviderNotPopUp")
-    public void checkNavigationNotPopUp(String button) {
-        new ContentPage(driver)
-                .getNavigationBlock().clickButton(button)
-                .closePopUp()
-                .checkPageName(button);
-    }
-
-
-    public static Stream<String> stringProviderNotPopUp() {
+    public static Stream<NameButton> stringProviderNotPopUp() {
         return Stream.of(
-                "Вебинары",
-                "Форум",
-                "Блог",
-                "Тесты"
+                NameButton.WEBINARS,
+                NameButton.FORUM,
+                NameButton.BLOG,
+                NameButton.TESTS
         );
     }
 
     @DisplayName("Проверка страницы Блог с PopUp")
     @Test
     public void checkNavigationPopUp() {
-        driver.get("https://geekbrains.ru/career");
-
         new ContentPage(driver)
-                .getNavigationBlock().clickButton("Блог")
+                .openURL()
+                .getNavigationBlock().clickButton(NameButton.BLOG)
                 .closePopUp()
-                .checkPageName("Блог");
+                .checkPageName(NameButton.BLOG);
     }
 }

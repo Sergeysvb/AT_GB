@@ -11,13 +11,15 @@ import ru.geekbrains.main.site.at.page.AuthorizationPage;
 import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.Matchers.*;
+import static ru.geekbrains.main.site.at.block.NavigationBlock.NameButton;
+import static ru.geekbrains.main.site.at.block.SearchTabsBlock.tabName;
 
-//Перейти на сайт https://geekbrains.ru/courses
+//        Перейти на сайт https://geekbrains.ru/courses
 //        Нажать на кнопку Поиск
 //        В поле Поиск ввести текст: java
 //        Проверить что отобразились блоки и в них:
 //        Профессий не менее чем 2
-//        Курсов более 15
+//        Курсов более 7
 //        Вебинаров больше чем 180, но меньше 300
 //        Блогов более 300
 //        Форумов не 350
@@ -38,18 +40,18 @@ public class SearchWebTest extends BaseWebSettingsTest {
     @DisplayName("Проверка количества контента")
     @Test
     void searchTest() {
-        driver.get("https://geekbrains.ru/login");
         new AuthorizationPage(driver)
+                .openURL()
                 .singIn("hks47018@eoopy.com","hks47018")
-                .checkPageName("Главная")
+                .checkPageName(NameButton.ICON)
                 .getHeaderBlock()
                 .searchText("java")
                 .getSearchTabsBlock()
-                .checkCount("Профессии", greaterThanOrEqualTo(2))
-                .checkCount("Курсы", greaterThan(15))
-                .checkCount("Вебинары", allOf(greaterThan(180), lessThan(300)))
-                .checkCount("Блоги", greaterThan(300))
-                .checkCount("Форумы", not(350))
-                .checkCount("Тесты", not(0));
+                .checkCount(tabName.Professions, greaterThanOrEqualTo(2))
+                .checkCount(tabName.Courses, greaterThan(7))
+                .checkCount(tabName.Webinars, allOf(greaterThan(180), lessThan(300)))
+                .checkCount(tabName.Blogs, greaterThan(300))
+                .checkCount(tabName.Forums, not(350))
+                .checkCount(tabName.Tests, not(0));
     }
 }

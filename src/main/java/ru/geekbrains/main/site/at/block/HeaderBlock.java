@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import ru.geekbrains.main.site.at.BasePage;
+import ru.geekbrains.main.site.at.utils.BasePage;
 import ru.geekbrains.main.site.at.page.SearchPage;
 
 public class HeaderBlock extends BasePage {
@@ -29,6 +29,7 @@ public class HeaderBlock extends BasePage {
         return this;
     }
 
+    @Step("Поиск текста: '{text}'")
     public SearchPage searchText(String text) {
         buttonSearch.click();
         inputSearch.sendKeys(text);

@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ru.geekbrains.main.site.at.BasePage;
+import ru.geekbrains.main.site.at.utils.BasePage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -40,37 +40,66 @@ public class SearchTabsBlock extends BasePage {
         super(driver);
     }
 
-    public void clickTab(String tabName) {
+    public void clickTab(tabName tabName) {
         getTab(tabName).click();
     }
 
-    @Step("Проверка на соответствие при поиске контента{tabName}")
-    public SearchTabsBlock checkCount(String tabName, Matcher<Integer> matcher) {
+    @Step("Проверка контента на соответствие при поиске {tabName}")
+    public SearchTabsBlock checkCount(tabName tabName, Matcher<Integer> matcher) {
         String actualCount = getTab(tabName).findElement(By.cssSelector("span")).getText();
         assertThat(Integer.parseInt(actualCount), matcher);
         return this;
     }
 
-    private WebElement getTab(String tabName) {
-        switch (tabName) {
-            case "Везде":
+    private WebElement getTab(tabName tabName) {
+        switch (tabName){
+            case EveryWhere: {
                 return tabEveryWhere;
-            case "Профессии":
+            }
+            case Professions: {
                 return tabProfessions;
-            case "Курсы":
+            }
+            case Courses: {
                 return tabCourses;
-            case "Вебинары":
+            }
+            case Webinars: {
                 return tabWebinars;
-            case "Блоги":
+            }
+            case Blogs: {
                 return tabBlogs;
-            case "Форумы":
+            }
+            case Forums: {
                 return tabForums;
-            case "Тесты":
+            }
+            case Tests: {
                 return tabTests;
-            case "Компании":
+            }
+            case Companies: {
                 return tabCompanies;
+            }
             default:
                 throw new RuntimeException("Элемента: "+tabName+" нет на странице!");
+        }
+    }
+
+    public enum tabName {
+        EveryWhere("Везде"),
+        Professions("Профессии"),
+        Courses("Курсы"),
+        Webinars("Вебинары"),
+        Blogs("Блоги"),
+        Forums("Форумы"),
+        Tests("Тесты"),
+        Companies("Компании")
+        ;
+
+        tabName(String text) {
+            this.text = text;
+        }
+        private String text;
+
+        public String getText() {
+            return text;
         }
     }
 }

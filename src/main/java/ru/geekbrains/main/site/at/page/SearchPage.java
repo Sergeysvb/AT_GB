@@ -4,7 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ru.geekbrains.main.site.at.BasePage;
+import ru.geekbrains.main.site.at.utils.BasePage;
 import ru.geekbrains.main.site.at.block.HeaderBlock;
 import ru.geekbrains.main.site.at.block.NavigationBlock;
 import ru.geekbrains.main.site.at.block.SearchTabsBlock;

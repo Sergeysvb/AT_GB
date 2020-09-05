@@ -4,12 +4,12 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ru.geekbrains.main.site.at.BasePage;
+import ru.geekbrains.main.site.at.utils.BasePage;
 import ru.geekbrains.main.site.at.page.ContentPage;
 
-public class NavigationBlock extends BasePage{
+public class NavigationBlock extends BasePage {
 
-    @FindBy(css = "[class=\"gb-left-menu__logo \"]")
+    @FindBy(css = "[class=\"gb-left-menu__logo\"]")
     private WebElement icon;
 
     @FindBy(css = "[href=\"/courses\"]")
@@ -35,47 +35,63 @@ public class NavigationBlock extends BasePage{
     }
 
     @Step("Клик по кнопке навигации с соответствующим контентом:{nameButton}")
-    public ContentPage clickButton(String nameButton){
-        switch (nameButton){
-            case "Иконка" : {
+    public ContentPage clickButton(NameButton nameButton) {
+        switch (nameButton) {
+            case ICON: {
                 this.icon.click();
                 break;
             }
-            case "Курсы" : {
+            case COURSES: {
                 this.buttonCourses.click();
                 break;
             }
-            case "Вебинары" : {
+            case WEBINARS: {
                 this.buttonWebinars.click();
                 break;
             }
-            case "Форум" : {
+            case FORUM: {
                 this.buttonForum.click();
                 break;
             }
-            case "Блог" : {
+            case BLOG: {
                 this.buttonBlog.click();
                 break;
             }
-            case "Тесты" : {
+            case TESTS: {
                 this.buttonTests.click();
                 break;
             }
-            case "Карьера" : {
+            case CAREER: {
                 this.buttonCareer.click();
                 break;
             }
-            default:{
-                throw new RuntimeException("Кнопки: "+nameButton+" нет на странице!");
+            default: {
+                throw new RuntimeException("Кнопки: " + nameButton + " нет на странице!\n" +
+                        "Или условие не описано в switch!");
             }
         }
         return new ContentPage(driver);
     }
+
+    public enum NameButton {
+        ICON("Главная"),
+        COURSES("Курсы"),
+        WEBINARS("Вебинары"),
+        FORUM("Форум"),
+        BLOG("Блог"),
+        TESTS("Тесты"),
+        CAREER("Карьера");
+
+        NameButton(String text) {
+
+            this.text = text;
+        }
+
+        private String text;
+
+        public String getText() {
+            return text;
+        }
+    }
 }
-//    Иконка
-//    Курсы
-//    Вебинары
-//    Форум
-//    Блог
-//    Тесты
-//    Карьера
+

@@ -4,10 +4,11 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ru.geekbrains.main.site.at.BasePage;
+import ru.geekbrains.main.site.at.utils.BasePage;
 import ru.geekbrains.main.site.at.block.*;
+import ru.geekbrains.main.site.at.block.NavigationBlock.NameButton;
 
-public class ContentPage extends BasePage {
+public class ContentPage extends BasePage implements IOpenURL{
 
     private HeaderBlock headerBlock;
     private NavigationBlock navigationBlock;
@@ -31,10 +32,10 @@ public class ContentPage extends BasePage {
     }
 
     @Step("Проверка что имя страницы равно:{expectedNamePage}")
-    public ContentPage checkPageName(String expectedNamePage) {
-        headerBlock.checkNamePage(expectedNamePage);
-        return this;
-    }
+ public ContentPage checkPageName(NameButton nameButton) {
+     headerBlock.checkNamePage(nameButton.getText());
+     return this;
+ }
 
     @Step("Закрытие всплывающий окон с предложениями")
     public ContentPage closePopUp(){
@@ -60,7 +61,11 @@ public class ContentPage extends BasePage {
         return headerBlock;
     }
 
-    public NavigationBlock getNavigationBlock() {
-        return navigationBlock;
+    public NavigationBlock getNavigationBlock() { return navigationBlock; }
+
+    @Override
+    public ContentPage openURL() {
+        driver.get("https://geekbrains.ru/career");
+        return this;
     }
 }

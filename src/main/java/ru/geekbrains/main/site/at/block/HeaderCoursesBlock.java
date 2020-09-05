@@ -4,8 +4,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ru.geekbrains.main.site.at.BasePage;
 import ru.geekbrains.main.site.at.page.ContentPage;
+import ru.geekbrains.main.site.at.utils.BasePage;
 
 public class HeaderCoursesBlock extends BasePage {
     @FindBy(css = "[id=\"prof-link\"]")
@@ -24,30 +24,46 @@ public class HeaderCoursesBlock extends BasePage {
         super(driver);
     }
 
+
     @Step("Проверка кнопок с соответствующим контентом:{nameButton}")
-    public ContentPage clickButton(String nameButton) {
-        switch (nameButton) {
-            case "Профессии": {
+    public ContentPage clickButtonHBlock(NameButtonHBlock nameButtonHBlock){
+        switch (nameButtonHBlock) {
+            case PROFESSIONS: {
                 this.professions.click();
                 break;
             }
-            case "Бесплатные интенсивы": {
+            case FREE_INTENSIVES: {
                 this.freeIntensives.click();
                 break;
             }
-            case "Курсы": {
+            case COURSES: {
                 this.courses.click();
                 break;
             }
-            case "Компаниям": {
+            case COMPANIES: {
                 this.companies.click();
                 break;
             }
-
             default: {
-                throw new RuntimeException("Кнопки: " + nameButton + " нет на странице!");
+                throw new RuntimeException("Кнопки: " + nameButtonHBlock + " нет на странице!");
             }
         }
         return new ContentPage(driver);
+    }
+
+    public enum NameButtonHBlock{
+        PROFESSIONS("Профессии"),
+        FREE_INTENSIVES("Бесплатные интенсивы"),
+        COURSES("Курсы"),
+        COMPANIES("Компаниям");
+
+        NameButtonHBlock(String text) {
+            this.text = text;
+        }
+        private String text;
+
+        public String getText() {
+            return text;
+        }
     }
 }
