@@ -15,6 +15,5 @@ public class Wall implements Obstacles{
         } else {
             System.out.println(players.getName() + " не перепрыгнул стену высотой: " + height + "м");
         }
-
     }
 }
